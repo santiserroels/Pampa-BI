@@ -23,11 +23,13 @@ function App() {
     actualText===texts.en ? setActualText(texts.es): setActualText(texts.en)
   }
   React.useEffect(() => {
-    var lang = window.navigator.language || navigator.browserLanguage;
-    if (lang.includes("es") && !actualText){
+    var lang = window.navigator.language || navigator.userLanguage;
+    if (lang.includes("es") && actualText){
       setActualText(texts.es)
+    }else{
+      setActualText(texts.en)
     }
-  })
+  },[])
   return (
     <div className="App" id="inicio">
       <Header lan={changeLanguage} text={actualText.header}/>
